@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    max-height: 1080px;
+  }  
+  
+  body {
+    margin: 0;
+  }
+  
