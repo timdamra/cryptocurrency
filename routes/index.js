@@ -8,7 +8,8 @@ const {
     handleMultiSymbol,
     handleAvg,
     handleOHLCV,
-    handleTopList
+    handleTopList,
+    handleCompareCrypto
 } = controllers
 
 const { daily, hourly, minute } = handleOHLCV
@@ -46,5 +47,8 @@ router.route('/api/ohlcv/:time')
 // Handle Top List
 router.route('/api/toplist')
 .get(handleTopList)
+
+router.route('/api/compare')
+.get(handleCompareCrypto)
 
 module.exports = router;

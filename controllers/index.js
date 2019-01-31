@@ -2,7 +2,7 @@ const axios = require('axios')
 const query = require('../queries')
 const asyncRequest = require('../utils/async_requests')
 
-const { createAsyncGenerator } = asyncRequest
+const { createAsyncGenerator, createCompareStream } = asyncRequest
 
 const { 
     cryptoCompare: {
@@ -78,22 +78,50 @@ module.exports = {
             res.send('RESPONSE FROM MINUTE')
         }
     },
-    handleTopList: (req, res) => {
+    handleTopList: async (req, res) => {
         const { tsym, reqLimit = 10, reqPageNumber = 1 } = req.query
         const requestUrl = `${url}${twentyFourHour_Volume}${fiat}=${tsym}&${limit}=${reqLimit}&${page}=${reqPageNumber}&${keyQuery}=${apiKey}`
         
-        const initGenerator = createAsyncGenerator(requestUrl)
-        const resolveFetchedData = initGenerator.next()
+        try {
+            const queriedData = await axios.get(requestUrl)
 
-        resolveFetchedData
-        .value
-        .then(recievedData => {
-            const resolvedData = initGenerator.next(recievedData.data)
+            res.send(queriedData.data)
+        } catch (e) {
+            res.status(410).send(e)
+        }
+    },
+    handleCompareCrypto: (req, res) => {
+        const { fsym1, fsym2, tsyms } = req.query
+        const requestUrl1 = `${url}${singleSymbol}${crypto}=${fsym1}&${fiatList}=${tsyms}&${keyQuery}=${apiKey}` 
+        const requestUrl2 = `${url}${singleSymbol}${crypto}=${fsym2}&${fiatList}=${tsyms}&${keyQuery}=${apiKey}`
 
-            res.send(resolvedData)
+        let dataFromFirstCoin
+
+        // initializes generator object and fetches the request argument (which will not be yielded until next is invoked)
+        const compareStream = createCompareStream(requestUrl1)
+        
+        // yields the fetched data from requestUrl1 (when generator was initialized)
+        // next is called on generator instance (compareStream)
+        const firstCoinData = compareStream.next().value       
+
+        firstCoinData
+        .then(returnedData => {            
+            dataFromFirstCoin = returnedData.data
+            
+            // passes in 2nd request (requestUrl2) which generator fetches and immediately returns pending promise
+            const resData = compareStream.next(requestUrl2).value
+
+            // resData is a pending promise which needs to be resolved
+            return resData
+        })
+        .then(secondReturnedData => {
+            // promise from 2nd request (resData) resolves here
+            const dataFromSecondCoin = secondReturnedData.data
+                        
+            res.send([dataFromFirstCoin, dataFromSecondCoin])
         })
         .catch(err => {
-            res.status(505).send(err)
+            res.status(410).send(err)
         })
     }
 }

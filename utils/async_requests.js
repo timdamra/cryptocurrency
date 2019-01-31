@@ -14,4 +14,28 @@ function *createAsyncGenerator(url) {
     }
 }
 
-module.exports = { fetchStream, createAsyncGenerator }
+function *createCompareStream(coin) {    
+    const getFirstCoin = yield axios.get(coin)
+    
+    yield axios.get(getFirstCoin)    
+}
+
+module.exports = { fetchStream, createAsyncGenerator, createCompareStream }
+
+
+/** 
+ * const initGenerator = createAsyncGenerator(requestUrl)
+        const resolveFetchedData = initGenerator.next()
+
+        resolveFetchedData
+        .value
+        .then(recievedData => {
+            const resolvedData = initGenerator.next(recievedData.data)
+
+            res.send(resolvedData)
+        })
+        .catch(err => {
+            res.status(505).send(err)
+        })
+ * 
+ * */ 
