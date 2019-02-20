@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const functions = require('firebase-functions');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -42,4 +43,4 @@ app.use(function(err, req, res, next) {
   res.send('error');
 });
 
-module.exports = app;
+module.exports.firebaseApp = functions.https.onRequest(app);
