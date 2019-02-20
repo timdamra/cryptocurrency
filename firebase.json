@@ -15,10 +15,6 @@
       {
         "source": "**",
         "destination": "/index.html"
-      },
-      {
-        "source": "/test",
-        "destination": "test"
       }
     ]
   }
