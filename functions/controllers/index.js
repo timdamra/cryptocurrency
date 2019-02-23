@@ -1,3 +1,4 @@
+/* eslint-disable */
 const axios = require('axios')
 const query = require('../queries')
 const asyncRequest = require('../utils/async_requests')

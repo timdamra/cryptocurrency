@@ -1,3 +1,4 @@
+/* eslint-disable */
 const createError = require('http-errors');
 const express = require('express');
 const functions = require('firebase-functions');
