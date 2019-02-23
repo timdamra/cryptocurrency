@@ -1,7 +1,9 @@
 const express = require('express')
+const path = require('path')
 
 const controllers = require('../controllers/index.js')
 const router = express.Router()
+//const homePage = require('../../dist/index.html')
 
 const {
     handleSingleSymbol,
@@ -13,9 +15,6 @@ const {
 } = controllers
 
 const { daily, hourly, minute } = handleOHLCV
-
-/* GET home page. */
-router.get('/', (req, res) => res.send('Hello World!'))
 
 // Single Symbol
 router.route('/api/ssym')

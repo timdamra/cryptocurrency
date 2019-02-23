@@ -4,20 +4,16 @@
   "private": true,
   "scripts": {
     "start:dev": "webpack-dev-server --open --mode development",
-    "start": "node index.js",
+    "firebase:dev": "firebase serve --only functions,hosting",
+    "start": "node src/index.js",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
     "firebase-admin": "^7.0.0",
     "firebase-functions": "^2.2.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-redux": "^6.0.0",
