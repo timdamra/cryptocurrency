@@ -32,7 +32,7 @@ const {
 } = query
 
 module.exports = {
-    handleSingleSymbol: async function (req, res) {
+    handleSingleSymbol: async (req, res) => {
         const { fsym, tsyms } = req.query       
         const requestUrl = `${url}${singleSymbol}${crypto}=${fsym}&${fiatList}=${tsyms}&${keyQuery}=${apiKey}`  
 
@@ -44,7 +44,7 @@ module.exports = {
             res.status(404).send('NOT FOUND')
         }        
     },
-    handleMultiSymbol: async function (req, res) {
+    handleMultiSymbol: async (req, res) => {
         const { fsyms, tsyms } = req.query        
         const requestUrl = `${url}${multiSymbol}${cryptoList}=${fsyms}&${fiatList}=${tsyms}&${keyQuery}=${apiKey}`        
 
@@ -56,7 +56,7 @@ module.exports = {
             res.status(404).send('NOT FOUND')
         } 
     },
-    handleAvg: async function (req, res) {
+    handleAvg: async (req, res) => {
         const { fsym, tsym } = req.query        
         const requestUrl = `${url}${customAvg}${crypto}=${fsym}&${fiat}=${tsym}&e=Kraken&${keyQuery}=${apiKey}`        
 
@@ -79,7 +79,7 @@ module.exports = {
             res.send('RESPONSE FROM MINUTE')
         }
     },
-    handleTopList: async function (req, res) {
+    handleTopList: async (req, res) => {
         const { tsym, reqLimit = 10, reqPageNumber = 1 } = req.query
         const requestUrl = `${url}${twentyFourHour_Volume}${fiat}=${tsym}&${limit}=${reqLimit}&${page}=${reqPageNumber}&${keyQuery}=${apiKey}`
         
