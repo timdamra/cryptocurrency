@@ -2,15 +2,18 @@
   "name": "crypto-app-server",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10"
+  },
   "scripts": {
     "start:dev": "webpack-dev-server --open --mode development",
-    "firebase:dev": "firebase serve --only functions,hosting",
     "start": "node src/index.js",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
+    "@babel/runtime": "^7.3.1",
     "axios": "^0.18.0",
     "firebase-admin": "^7.0.0",
     "firebase-functions": "^2.2.0",
@@ -24,6 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",

@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 
-class App extends Component {
-    render = () => {
-        return (
-            <p>Whats up World</p>
-        )
-    }
-}
+import rootReducer from './reducers'
+import { singleSymbolWatcher } from './sagas'
+import App from './components'
+
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+    rootReducer,
+    applyMiddleware(sagaMiddleware)
+)
+sagaMiddleware.run(singleSymbolWatcher)
 
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 )
