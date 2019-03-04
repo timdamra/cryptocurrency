@@ -38,3 +38,5 @@ export class ErrorBoundary extends Component {
     children: PropTypes.any
   }
 }
+
+export default ErrorBoundary

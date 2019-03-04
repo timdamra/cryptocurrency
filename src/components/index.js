@@ -2,31 +2,38 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import actions from '../actions'
+import actions from 'actions'
+import NavBar from 'components/styled-components/navbar'
 
-const { GET_SINGLE_SYMBOL } = actions
+const { GET_TOP_LIST } = actions
 
 class App extends Component {
   componentDidMount = () => {
-    this.props.getSingleSymbol()
+    this.props.getTopList()
   }
   render = () => {
-    return <p>Whats up World</p>
+    return (
+      <div className="content-container">
+        <NavBar />
+        <section>CONTENT</section>
+        <footer>FOOTER</footer>
+      </div>
+    )
   }
   static propTypes = {
     getSingleSymbol: PropTypes.func
   }
 }
 
-const mapStateToProps = ({ singleSymbol }) => {
+const mapStateToProps = ({ topList }) => {
   return {
-    singleSymbol
+    topList
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getSingleSymbol: () => dispatch({ type: GET_SINGLE_SYMBOL })
+    getTopList: () => dispatch({ type: GET_TOP_LIST })
   }
 }
 
