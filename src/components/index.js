@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import actions from 'actions'
-import NavBar from 'components/styled-components/navbar'
+import NavBar from 'components/ui-components/navbar'
 
 const { GET_TOP_LIST } = actions
 

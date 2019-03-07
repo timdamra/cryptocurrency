@@ -1,0 +1,23 @@
+.nav-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: navy;
+  color: oldlace;
+  padding: 12px 0;
+}
+
+.nav-flex > * {
+  margin: 4px 8px;
+}
+
+.nav__active-item {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.nav--sub-nav-item__active {
+  background-color: cornflowerblue;
+  text-decoration: underline;
+}

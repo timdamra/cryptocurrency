@@ -8,8 +8,7 @@ import './app.css'
 import rootReducer from 'reducers'
 import { topListWatcher, singleSymbolWatcher } from 'sagas'
 
-import App from 'components'
-import ErrorBoundary from 'components/error-boundary'
+import Root from './root'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
@@ -19,11 +18,7 @@ sagaMiddleware.run(singleSymbolWatcher)
 
 ReactDOM.render(
   <Provider store={store}>
-    <StrictMode>
-      <ErrorBoundary>
-        <App />
-      </ErrorBoundary>
-    </StrictMode>
+    <Root />
   </Provider>,
   document.getElementById('root')
 )
