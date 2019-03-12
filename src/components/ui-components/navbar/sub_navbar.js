@@ -6,17 +6,17 @@ function SubNavBar(props) {
   return (
     <ul>
       {props.coinListSubNavExpanded &&
-       React.Children.map((item, idx) => {
-        return (
-          <li
-            onClick={() => setActiveItem(idx)}
-            className={activeItem === idx ? 'nav--sub-nav-item__active' : ''}
-            key={idx}
-          >
-            {item.text}
-          </li>
-        )
-      })}
+        React.Children.map((item, idx) => {
+          return (
+            <li
+              onClick={() => setActiveItem(idx)}
+              className={activeItem === idx ? 'nav--sub-nav-item__active' : ''}
+              key={idx}
+            >
+              {item.text}
+            </li>
+          )
+        })}
     </ul>
   )
 }

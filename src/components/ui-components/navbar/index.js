@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import { Link } from 'react-router-dom'
 
 import './index.css'
 
@@ -8,7 +9,7 @@ const initialState = {
   contact: ''
 }
 
-function activeNavItemReducer (state, { type }) {
+function activeNavItemReducer(state, { type }) {
   switch (type) {
     case 'coin_list':
       return initialState
@@ -26,32 +27,29 @@ function NavBar() {
 
   return (
     <nav className="nav-flex">
-      <div>
-      <h2
-          className={state['coin_list']}
+      <Link to="/">
+        <h2
+          className={state.coin_list}
           onClick={() => {
             dispatch({ type: 'coin_list' })
           }}
         >
           Coin List
         </h2>
-      </div>
-      <div>
-        <h2
-          className={state['news']}
-          onClick={() => dispatch({ type: 'news' })}
-        >
+      </Link>
+      <Link to="/news">
+        <h2 className={state.news} onClick={() => dispatch({ type: 'news' })}>
           News
         </h2>
-      </div>
-      <div>
+      </Link>
+      <Link to="/contact">
         <h2
-          className={state['contact']}
+          className={state.contact}
           onClick={() => dispatch({ type: 'contact' })}
         >
           Contact Us
         </h2>
-      </div>
+      </Link>
     </nav>
   )
 }

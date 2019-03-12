@@ -12,6 +12,14 @@
   margin: 4px 8px;
 }
 
+.nav-flex a {
+  text-decoration: none;
+}
+
+.nav-flex a:visited {
+  color: lightslategrey;
+}
+
 .nav__active-item {
   text-decoration: underline;
   font-weight: 600;

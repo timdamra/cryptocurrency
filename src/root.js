@@ -1,7 +1,7 @@
 import React, { StrictMode, Component, Fragment } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
-import App from 'components'
+import AppRouter from './app_router'
 import ErrorBoundary from 'components/error-boundary'
 
 class Root extends Component {
@@ -11,7 +11,7 @@ class Root extends Component {
         <BrowserRouter>
           <StrictMode>
             <ErrorBoundary>
-              <App />
+              <AppRouter />
             </ErrorBoundary>
           </StrictMode>
         </BrowserRouter>

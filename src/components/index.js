@@ -4,18 +4,23 @@ import PropTypes from 'prop-types'
 
 import actions from 'actions'
 import NavBar from 'components/ui-components/navbar'
+import TopList from 'components/containers/top_list'
 
 const { GET_TOP_LIST } = actions
 
 class App extends Component {
-  componentDidMount = () => {
+  fetchTopList = () => {
     this.props.getTopList()
   }
   render = () => {
     return (
       <div className="content-container">
-        <NavBar />
-        <section>CONTENT</section>
+        <section>
+          <TopList
+            topList={this.props.topList}
+            fetchTopList={this.fetchTopList}
+          />
+        </section>
         <footer>FOOTER</footer>
       </div>
     )
