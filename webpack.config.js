@@ -38,7 +38,8 @@ module.exports = {
         actions: path.resolve(__dirname, 'src/actions'),
         components: path.resolve(__dirname, 'src/components'),
         sagas: path.resolve(__dirname, 'src/sagas'),
-        hooks: path.resolve(__dirname, 'src/hooks')
+        hooks: path.resolve(__dirname, 'src/hooks'),
+        selectors: path.resolve(__dirname, 'src/selectors')
       }
     }
 }

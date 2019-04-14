@@ -1,0 +1,11 @@
+.coin-list-item {
+  padding: 4px 12px;
+  border: solid 1px black;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 900px) {
+  .coin-list-item {
+    width: 80vw;
+  }
+}

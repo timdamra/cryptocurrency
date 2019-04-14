@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import CoinListItem from 'components/ui-components/coin_list_item'
 
 export function TopList({ topList, fetchTopList }) {
   useEffect(() => {
@@ -10,11 +11,16 @@ export function TopList({ topList, fetchTopList }) {
 
   const isListAvailable = topList && topList.length > 0
 
+  console.log(topList)
+
   return isListAvailable ? (
     <ul>
-      {topList.map((coin, idx) => {
-        return <li key={idx}>{coin.CoinInfo.Name}</li>
-      })}
+      {topList.map((coin, idx) => (
+        <CoinListItem
+          key={idx}
+          coin={coin}
+        />
+      ))}
     </ul>
   ) : (
     <h2>Waiting..</h2>

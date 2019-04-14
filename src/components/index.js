@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -14,15 +14,14 @@ class App extends Component {
   }
   render = () => {
     return (
-      <div className="content-container">
-        <section>
+      <Fragment>
+        <main>
           <TopList
             topList={this.props.topList}
             fetchTopList={this.fetchTopList}
           />
-        </section>
-        <footer>FOOTER</footer>
-      </div>
+        </main>
+      </Fragment>
     )
   }
   static propTypes = {

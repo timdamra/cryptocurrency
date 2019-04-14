@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import App from 'components'
 import NavBar from 'components/ui-components/navbar'
+import Footer from 'components/ui-components/footer'
 
 export class AppRouter extends Component {
   render = () => {
@@ -25,6 +26,7 @@ export class AppRouter extends Component {
           <Route path="/" component={App} />
           <Route render={() => 'No Match'} />
         </Switch>
+        <Footer />
       </Fragment>
     )
   }
