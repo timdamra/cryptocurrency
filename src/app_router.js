@@ -14,13 +14,21 @@ export class AppRouter extends Component {
           <Route
             path="/news"
             render={() => {
-              return <h2>News Page</h2>
+              return (
+                <main>
+                  <h2>News Page</h2>
+                </main>
+              )
             }}
           />
           <Route
             path="/contact"
             render={() => {
-              return <h2>Contact</h2>
+              return (
+                <main>
+                  <h2>Contact</h2>
+                </main>
+              )
             }}
           />
           <Route path="/" component={App} />

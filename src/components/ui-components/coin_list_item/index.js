@@ -15,6 +15,12 @@ function addPercentageStyles(percent) {
   )
 }
 
+function addHigherPriceStyles(price) {
+  return (
+    <p className="f-blue">{price}</p>
+  )
+}
+
 export default function CoinListItem(props) {
   const {
     idx,
@@ -40,6 +46,10 @@ export default function CoinListItem(props) {
     return addPercentageStyles(CHANGEPCT24HOUR)
   }, [isAboveZero])
 
+  const styledPrice = useMemo(() => {
+    return addHigherPriceStyles(Price)
+  }, [Price])
+
   return (
     <li className="coin-list-item">
       <Grid
@@ -56,7 +66,7 @@ export default function CoinListItem(props) {
           {styledPercentage}
         </Grid>
         <Grid item>
-          <p>{Price}</p>
+          <p>{styledPrice}</p>
         </Grid>
       </Grid>
     </li>
