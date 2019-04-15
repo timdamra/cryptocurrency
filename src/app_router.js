@@ -15,9 +15,9 @@ export class AppRouter extends Component {
             path="/news"
             render={() => {
               return (
-                <main>
+                <section className="route-section">
                   <h2>News Page</h2>
-                </main>
+                </section>
               )
             }}
           />
@@ -25,9 +25,9 @@ export class AppRouter extends Component {
             path="/contact"
             render={() => {
               return (
-                <main>
+                <section className="route-section">
                   <h2>Contact</h2>
-                </main>
+                </section>
               )
             }}
           />

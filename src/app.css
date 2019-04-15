@@ -20,9 +20,11 @@ body {
   align-items: stretch;
 }
 
-main {
+main,
+.route-section {
   flex-grow: 1;
   max-width: 800px;
+  min-width: 275px;
   margin: auto;
   margin-top: 18vh;
 }

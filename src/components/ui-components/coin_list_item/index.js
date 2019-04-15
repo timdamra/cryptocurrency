@@ -6,12 +6,12 @@ import './index.css'
 function addPercentageStyles(percent) {
   if(percent > 0) {
     return (
-      <p className="fs-12 f-greeen">{`+${percent}`}</p>
+      <p className="fs-12 f-greeen">{`+${percent}%`}</p>
     )
   }
 
   return (
-    <p className="fs-12 f-red">{`-${percent}`}</p>
+    <p className="fs-12 f-red">{`-${percent}%`}</p>
   )
 }
 
