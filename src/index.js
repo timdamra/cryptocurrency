@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga'
 import './app.css'
 
 import rootReducer from 'reducers'
-import { topListWatcher, singleSymbolWatcher } from 'sagas'
+import { topListWatcher, singleSymbolWatcher, historicalDataWatcher } from 'sagas'
 
 import Root from './root'
 
@@ -15,6 +15,7 @@ const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
 
 sagaMiddleware.run(topListWatcher)
 sagaMiddleware.run(singleSymbolWatcher)
+sagaMiddleware.run(historicalDataWatcher)
 
 ReactDOM.render(
   <Provider store={store}>

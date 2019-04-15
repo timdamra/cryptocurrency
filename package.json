@@ -20,6 +20,7 @@
     "firebase-admin": "^7.0.0",
     "firebase-functions": "^2.2.0",
     "react": "^16.8.2",
+    "react-charts": "^2.0.0-alpha.12",
     "react-dom": "^16.8.2",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",

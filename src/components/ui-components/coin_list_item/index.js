@@ -1,7 +1,13 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Grid } from "@material-ui/core"
 
+import LineChart from 'components/ui-components/line_chart'
+import actions from 'actions'
+
 import './index.css'
+
+const { GET_HISTORICAL_DATA_FOR_SYMBOL } = actions
 
 function addPercentageStyles(percent) {
   if(percent > 0) {
@@ -21,9 +27,20 @@ function addHigherPriceStyles(price) {
   )
 }
 
-export default function CoinListItem(props) {
+function currentHistoricalData(data = []) {
+  return data && data.length && data.map(timedData => {
+    const { time, close } = timedData
+
+    return [time, close]
+  })
+}
+
+function CoinListItem(props) {
   const {
     idx,
+    onClick,
+    historicalData,
+    fetchHistoricalData,
     coin: {
       CoinInfo: {
         FullName,
@@ -41,6 +58,7 @@ export default function CoinListItem(props) {
   } = props
 
   const isAboveZero = CHANGEPCT24HOUR > 0
+  const displayChart = props.activeCoin === idx
 
   const styledPercentage = useMemo(() => {
     return addPercentageStyles(CHANGEPCT24HOUR)
@@ -50,8 +68,18 @@ export default function CoinListItem(props) {
     return addHigherPriceStyles(Price)
   }, [Price])
 
+  useEffect(() => {
+    fetchHistoricalData(Name)
+
+    return () => console.log(Name)
+  }, [displayChart])
+
   return (
-    <li className="coin-list-item">
+    <li onClick={() => {
+      onClick()
+      fetchHistoricalData(Name)
+      console.log(historicalData)
+    }} className="coin-list-item">
       <Grid
         container
         direction="row"
@@ -69,6 +97,30 @@ export default function CoinListItem(props) {
           <p>{styledPrice}</p>
         </Grid>
       </Grid>
+      {displayChart ? (
+        <LineChart
+          data={[
+            {
+              label: Name,
+              data: historicalData.length > 0 && historicalData.map(timedData => ([timedData.time, timedData.close]))
+            }
+          ]}
+        />
+      ) : null}
     </li>
   )
 }
+
+const mapStateToProps = ({ historicalData }) => {
+  return {
+    historicalData
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchHistoricalData: coin => dispatch({ type: GET_HISTORICAL_DATA_FOR_SYMBOL, payload: coin })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoinListItem)
